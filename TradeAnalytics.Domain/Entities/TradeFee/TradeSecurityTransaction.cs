@@ -5,7 +5,7 @@ using TradeAnalytics.Domain.Enums;
 
 namespace TradeAnalytics.Domain.Entities.TradeFee
 {
-    internal class TradeSecurityTransaction
+    public class TradeSecurityTransaction
     {
         public int TradeQuantity { get; set; }
         public TradeType TradeType { get; set; }
