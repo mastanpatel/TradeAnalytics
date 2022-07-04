@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace TradeAnalytics.Application.Features.Portfolioes
+namespace TradeAnalytics.Application.Features.Portfolioes.Commands.CreatePortfolio
 {
-    public class PortfolioListVm
+    public class CreatePortfolioCommand : IRequest<Guid>
     {
-        public Guid PortfolioId { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }
         public bool IsActive { get; set; }

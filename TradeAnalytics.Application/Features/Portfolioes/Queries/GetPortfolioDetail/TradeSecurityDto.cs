@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TradeAnalytics.Domain.Entities;
 
-namespace TradeAnalytics.Application.Features.Portfolioes
+namespace TradeAnalytics.Application.Features.Portfolioes.Queries.GetPortfolioDetail
 {
     public class TradeSecurityDto
     {
@@ -13,6 +13,6 @@ namespace TradeAnalytics.Application.Features.Portfolioes
         public string SecurityCode { get; set; }
         public string Desc { get; set; }
         public TradeSecurityPerformance TradeSecurityPerformance { get; set; }
-        public TradeSecurityFundamentals TradeSecurityFundamentals { get; set; } 
+        public TradeSecurityFundamentals TradeSecurityFundamentals { get; set; }
     }
 }

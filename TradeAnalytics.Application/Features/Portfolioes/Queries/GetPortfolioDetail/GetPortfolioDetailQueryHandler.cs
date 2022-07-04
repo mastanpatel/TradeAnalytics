@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using TradeAnalytics.Application.Contracts.Persistance;
 using TradeAnalytics.Domain.Entities;
 
-namespace TradeAnalytics.Application.Features.Portfolioes
+namespace TradeAnalytics.Application.Features.Portfolioes.Queries.GetPortfolioDetail
 {
     public class GetPortfolioDetailQueryHandler : IRequestHandler<GetPortfolioDetailQuery, PortfolioDetailVm>
     {
