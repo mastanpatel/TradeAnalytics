@@ -5,7 +5,7 @@ using TradeAnalytics.Domain.Enums;
 
 namespace TradeAnalytics.Domain.Entities.TradeFee
 {
-    internal class Brokerage : TradeSecurityTransaction
+    public class Brokerage : TradeSecurityTransaction
     {
         public Guid BrokerageId { get; set; }
         public string BrokerName { get; set; }

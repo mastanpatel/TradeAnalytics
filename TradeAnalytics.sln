@@ -15,7 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{8281ED66-0740-40A1-B814-C6B5FCA3B5A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeAnalytics.Domain", "TradeAnalytics.Domain\TradeAnalytics.Domain.csproj", "{A148C532-A9B5-4841-AD41-AFE872D58131}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeAnalytics.Domain", "TradeAnalytics.Domain\TradeAnalytics.Domain.csproj", "{A148C532-A9B5-4841-AD41-AFE872D58131}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeAnalytics.Application", "TradeAnalytics.Application\TradeAnalytics.Application.csproj", "{E4C0003C-698E-4252-8839-D37E3AD3FB27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A148C532-A9B5-4841-AD41-AFE872D58131}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A148C532-A9B5-4841-AD41-AFE872D58131}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A148C532-A9B5-4841-AD41-AFE872D58131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4C0003C-698E-4252-8839-D37E3AD3FB27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4C0003C-698E-4252-8839-D37E3AD3FB27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4C0003C-698E-4252-8839-D37E3AD3FB27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4C0003C-698E-4252-8839-D37E3AD3FB27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{913188FB-9044-40E8-8DD2-AA053BC7A67A} = {A52AD99E-A1F6-4231-B18F-1F14A23974DF}
 		{8281ED66-0740-40A1-B814-C6B5FCA3B5A4} = {A52AD99E-A1F6-4231-B18F-1F14A23974DF}
 		{A148C532-A9B5-4841-AD41-AFE872D58131} = {9079EE13-B44D-4764-80DE-A2A87B9A4EDF}
+		{E4C0003C-698E-4252-8839-D37E3AD3FB27} = {9079EE13-B44D-4764-80DE-A2A87B9A4EDF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79A9B4F9-8CD2-44CD-96CA-48EE26DE0A9B}

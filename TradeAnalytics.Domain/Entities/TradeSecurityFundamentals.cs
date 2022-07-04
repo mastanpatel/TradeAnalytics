@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TradeAnalytics.Domain.Entities
 {
-    internal class TradeSecurityFundamentals 
+    public class TradeSecurityFundamentals 
     {
         public decimal MarketCap { get; set; }
         public decimal PriceToEarning { get; set; }

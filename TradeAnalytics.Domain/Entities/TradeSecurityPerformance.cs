@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TradeAnalytics.Domain.Entities
 {
-    internal class TradeSecurityPerformance
+    public class TradeSecurityPerformance
     {
         public DateTime Date { get; set; }
         public decimal OpenPrice { get; set; }
