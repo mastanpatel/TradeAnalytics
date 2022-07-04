@@ -6,7 +6,7 @@ using TradeAnalytics.Domain.Enums;
 
 namespace TradeAnalytics.Domain.Entities.TradeFee
 {
-    internal class TradeSecurityFee : AuditableEntity
+    public class TradeSecurityFee : AuditableEntity
     {
         public Guid TradeSecurityFeeId { get; set; }
         public TradeSecurityTransaction TradeSecurityTransaction { get; set; }

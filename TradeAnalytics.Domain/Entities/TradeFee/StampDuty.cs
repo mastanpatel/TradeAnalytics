@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TradeAnalytics.Domain.Entities.TradeFee
 {
-    internal class StampDuty
+    public class StampDuty
     {
         public Guid StampDutyId { get; set; }
         public string State { get; set; }

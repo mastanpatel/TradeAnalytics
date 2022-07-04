@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TradeAnalytics.Domain.Common;
+using TradeAnalytics.Domain.Entities;
 
-namespace TradeAnalytics.Domain.Entities
+namespace TradeAnalytics.Application.Features.Portfolioes.Queries.GetPortfolioDetail
 {
-    public class TradeSecurity : AuditableEntity
+    public class TradeSecurityDto
     {
         public Guid TradeSecurityId { get; set; }
         public Guid PortfolioId { get; set; }
