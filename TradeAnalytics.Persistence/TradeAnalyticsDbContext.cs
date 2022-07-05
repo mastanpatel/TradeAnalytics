@@ -27,6 +27,11 @@ namespace TradeAnalytics.Persistence
 
             //seed data to add through migrations
             var portfolioMastan = Guid.Parse("{939c458e-5e58-4a08-8579-0d9362ebed0f}");
+            var wiproTradeSecurity = Guid.Parse("{edcb61fc-b446-48b5-9f43-45a9bc7a4755}");
+            //modelBuilder.Entity<TradeSecurityFundamentals>()
+            //    .HasNoKey();
+            //modelBuilder.Entity<TradeSecurityPerformance>()
+            //    .HasNoKey();
 
             modelBuilder.Entity<Portfolio>().HasData(new Portfolio
             {
@@ -38,24 +43,45 @@ namespace TradeAnalytics.Persistence
 
             modelBuilder.Entity<TradeSecurity>().HasData(new TradeSecurity
             {
-                TradeSecurityId = Guid.Parse("{edcb61fc-b446-48b5-9f43-45a9bc7a4755}"),
+                TradeSecurityId = wiproTradeSecurity,
                 PortfolioId = portfolioMastan,
                 Name = "Wipro",
                 SecurityCode = "Wipro",
                 Desc = "Wipro Limited is an Indian multinational corporation that provides information technology, consulting and business process services.",
-                TradeSecurityPerformance = new TradeSecurityPerformance
-                {
-                    Date = DateTime.Now,
-                    OpenPrice = 420.05m,
-                    PrevClosed = 422.00m,
-                    Volume = 3186358,
-                    Value = 1340000000m,
-                    Week_52_High = 739.85m,
-                    Week_52_Low = 421.75m 
+                //TradeSecurityPerformance = new TradeSecurityPerformance
+                //{
+                //    TradeSecurityPerformanceId = Guid.Parse("{79bfacfa-59e2-48e1-a494-ed445804221e}"),
+                //    TradeSecurityId = wiproTradeSecurity,
+                //    Date = DateTime.Now,
+                //    OpenPrice = 420.05m,
+                //    PrevClosed = 422.00m,
+                //    Volume = 3186358,
+                //    Value = 1340000000m,
+                //    Week_52_High = 739.85m,
+                //    Week_52_Low = 421.75m 
 
-                },
-                TradeSecurityFundamentals = new TradeSecurityFundamentals
+                //},
+                //TradeSecurityFundamentals = new TradeSecurityFundamentals
+                //{
+                //    TradeSecurityFundamentalsId = Guid.Parse("{07b764b1-aa58-4375-93cd-e30ce54ace3b}"),
+                //    TradeSecurityId = wiproTradeSecurity,
+                //    MarketCap = 230618m,
+                //    PriceToEarning = 18.93m,
+                //    PriceToBook = 3.51m,
+                //    PriceToEarning_Industry = 28.31m,
+                //    DebtToEquity = 0.27m,
+                //    ReturnOnEquityPerc = 20.18m,
+                //    EarningPerShare = 22.29m,
+                //    DividendYield = 1.42m,
+                //    BookValue = 120.38m,
+                //    FaceValue = 2
+                //}
+            });
+            modelBuilder.Entity<TradeSecurityFundamentals>().HasData(
+                new TradeSecurityFundamentals
                 {
+                    TradeSecurityFundamentalsId = Guid.Parse("{07b764b1-aa58-4375-93cd-e30ce54ace3b}"),
+                    TradeSecurityId = wiproTradeSecurity,
                     MarketCap = 230618m,
                     PriceToEarning = 18.93m,
                     PriceToBook = 3.51m,
@@ -66,8 +92,22 @@ namespace TradeAnalytics.Persistence
                     DividendYield = 1.42m,
                     BookValue = 120.38m,
                     FaceValue = 2
+                });
+            modelBuilder.Entity<TradeSecurityPerformance>().HasData(
+                new TradeSecurityPerformance
+                {
+                    TradeSecurityPerformanceId = Guid.Parse("{79bfacfa-59e2-48e1-a494-ed445804221e}"),
+                    TradeSecurityId = wiproTradeSecurity,
+                    Date = DateTime.Now,
+                    OpenPrice = 420.05m,
+                    PrevClosed = 422.00m,
+                    Volume = 3186358,
+                    Value = 1340000000m,
+                    Week_52_High = 739.85m,
+                    Week_52_Low = 421.75m
+
                 }
-            });
+                );
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
