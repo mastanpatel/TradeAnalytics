@@ -13,7 +13,7 @@ namespace TradeAnalytics.Domain.Entities
         public decimal DebtToEquity { get; set; }
         public decimal ReturnOnEquityPerc { get; set; }
         public decimal EarningPerShare { get; set; }
-        public decimal DevidendYield { get; set; }
+        public decimal DividendYield { get; set; }
         public decimal BookValue { get; set; }
         public decimal FaceValue { get; set; }
     }
