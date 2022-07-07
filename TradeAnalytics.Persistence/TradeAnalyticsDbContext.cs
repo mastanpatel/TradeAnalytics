@@ -28,10 +28,15 @@ namespace TradeAnalytics.Persistence
             //seed data to add through migrations
             var portfolioMastan = Guid.Parse("{939c458e-5e58-4a08-8579-0d9362ebed0f}");
             var wiproTradeSecurity = Guid.Parse("{edcb61fc-b446-48b5-9f43-45a9bc7a4755}");
-            //modelBuilder.Entity<TradeSecurityFundamentals>()
-            //    .HasNoKey();
-            //modelBuilder.Entity<TradeSecurityPerformance>()
-            //    .HasNoKey();
+
+            modelBuilder.Entity<Portfolio>().
+                HasMany(s => s.TradeSecurities);
+
+            modelBuilder.Entity<TradeSecurity>().
+                HasOne(s => s.TradeSecurityPerformance);
+
+            modelBuilder.Entity<TradeSecurity>().
+                HasOne(s => s.TradeSecurityPerformance);
 
             modelBuilder.Entity<Portfolio>().HasData(new Portfolio
             {
@@ -48,6 +53,8 @@ namespace TradeAnalytics.Persistence
                 Name = "Wipro",
                 SecurityCode = "Wipro",
                 Desc = "Wipro Limited is an Indian multinational corporation that provides information technology, consulting and business process services.",
+                //TradeSecurityFundamentals = new TradeSecurityFundamentals(),
+                //TradeSecurityPerformance = new TradeSecurityPerformance()
                 //TradeSecurityPerformance = new TradeSecurityPerformance
                 //{
                 //    TradeSecurityPerformanceId = Guid.Parse("{79bfacfa-59e2-48e1-a494-ed445804221e}"),
@@ -76,7 +83,7 @@ namespace TradeAnalytics.Persistence
                 //    BookValue = 120.38m,
                 //    FaceValue = 2
                 //}
-            });
+            }) ;
             modelBuilder.Entity<TradeSecurityFundamentals>().HasData(
                 new TradeSecurityFundamentals
                 {
