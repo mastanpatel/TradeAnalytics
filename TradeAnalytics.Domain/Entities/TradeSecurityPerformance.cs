@@ -6,6 +6,8 @@ namespace TradeAnalytics.Domain.Entities
 {
     public class TradeSecurityPerformance
     {
+        public Guid TradeSecurityPerformanceId { get; set; }
+        public Guid TradeSecurityId { get; set; }
         public DateTime Date { get; set; }
         public decimal OpenPrice { get; set; }
         public decimal PrevClosed { get; set; }

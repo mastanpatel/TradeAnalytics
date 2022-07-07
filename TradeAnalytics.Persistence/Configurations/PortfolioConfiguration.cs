@@ -14,6 +14,9 @@ namespace TradeAnalytics.Persistence.Configurations
             builder.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(50);
+
+            builder.HasMany(s => s.TradeSecurities)
+                .WithOne();
         }
     }
 }

@@ -6,6 +6,8 @@ namespace TradeAnalytics.Domain.Entities
 {
     public class TradeSecurityFundamentals 
     {
+        public Guid TradeSecurityFundamentalsId { get; set; }
+        public Guid TradeSecurityId { get; set; }
         public decimal MarketCap { get; set; }
         public decimal PriceToEarning { get; set; }
         public decimal PriceToBook { get; set; }

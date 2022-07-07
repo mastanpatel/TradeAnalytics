@@ -9,6 +9,7 @@ namespace TradeAnalytics.Domain.Entities.TradeFee
     public class TradeSecurityFee : AuditableEntity
     {
         public Guid TradeSecurityFeeId { get; set; }
+        public Guid TradeSecurityId { get; set; }
         public TradeSecurityTransaction TradeSecurityTransaction { get; set; }
         public Brokerage Brokerage { get; set; }
         public decimal SecurityTransCharge { get; set; }
