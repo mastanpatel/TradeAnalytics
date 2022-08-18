@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TradeAnalytics.Persistence;
 
 namespace TradeAnalytics.Persistence.Migrations
 {
     [DbContext(typeof(TradeAnalyticsDbContext))]
-    partial class TradeAnalyticsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220818085311_addedIsCurrent")]
+    partial class addedIsCurrent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

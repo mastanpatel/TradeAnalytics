@@ -7,8 +7,8 @@ namespace TradeAnalytics.Domain.Entities.TradeFee
 {
     public class Brokerage 
     {
-        public Guid BrokerageId { get; set; }
-        public Guid TradeSecurityFeeId { get; set; }
+        public int BrokerageId { get; set; }
+        public int TradeSecurityFeeId { get; set; }
         public string BrokerName { get; set; }
         public SecurityType SecurityType { get; set; }
         public SecurityExchangeType ExchangeType { get; set; }

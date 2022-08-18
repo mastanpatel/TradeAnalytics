@@ -26,33 +26,76 @@ namespace TradeAnalytics.Persistence
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(TradeAnalyticsDbContext).Assembly);
 
             //seed data to add through migrations
-            var portfolioMastan = Guid.Parse("{939c458e-5e58-4a08-8579-0d9362ebed0f}");
-            var wiproTradeSecurity = Guid.Parse("{edcb61fc-b446-48b5-9f43-45a9bc7a4755}");
+            //var portfolioMastan = 1;
+            //var wiproTradeSecurity = 1;
 
             modelBuilder.Entity<Portfolio>().
-                HasMany(s => s.TradeSecurities);
+                HasKey(s => s.PortfolioId);
+
+            modelBuilder.Entity<Portfolio>().
+                HasMany(s => s.TradeSecurities).
+                WithOne();
 
             modelBuilder.Entity<TradeSecurity>().
-                HasOne(s => s.TradeSecurityPerformance);
+                HasKey(s => s.TradeSecurityId);
 
             modelBuilder.Entity<TradeSecurity>().
-                HasOne(s => s.TradeSecurityPerformance);
+                HasMany(s => s.TradeSecurityFundamentals).
+                WithOne();
+
+            modelBuilder.Entity<TradeSecurity>().
+                HasMany(s => s.TradeSecurityPerformance).
+                WithOne();
+
+            modelBuilder.Entity<TradeSecurity>().
+                HasMany(s => s.TradeSecurityFees).
+                WithOne();
+
+            modelBuilder.Entity<TradeSecurityFundamentals>().
+                HasKey(s => s.TradeSecurityFundamentalsId);
+
+            //modelBuilder.Entity<TradeSecurityFundamentals>()
+            //    .HasOne<TradeSecurity>()
+            //    .WithMany()
+            //    .HasForeignKey(s => s.TradeSecurityId);
+
+            modelBuilder.Entity<TradeSecurityPerformance>().
+                HasKey(s => s.TradeSecurityPerformanceId);
+
+            modelBuilder.Entity<TradeSecurityFee>().
+                HasKey(s => s.TradeSecurityFeeId);
+
+            //modelBuilder.Entity<TradeSecurityPerformance>()
+            //    .HasOne<TradeSecurity>()
+            //    .WithMany()
+            //    .HasForeignKey(s => s.TradeSecurityId);
+
+            //modelBuilder.Entity<TradeSecurity>().
+            //    HasOne(s => s.TradeSecurityFundamentals);
+
+            //modelBuilder.Entity<TradeSecurity>().
+            //    HasOne(s => s.TradeSecurityPerformance);
 
             modelBuilder.Entity<Portfolio>().HasData(new Portfolio
             {
-                PortfolioId = portfolioMastan,
+                PortfolioId = 1,
                 Name = "portfolioMastan",
                 Desc = "portfolioMastan is a mastan's portfolio.",
-                IsActive = true
+                IsActive = true,
+                TradeSecurities = new HashSet<TradeSecurity>(),
             });
 
             modelBuilder.Entity<TradeSecurity>().HasData(new TradeSecurity
             {
-                TradeSecurityId = wiproTradeSecurity,
-                PortfolioId = portfolioMastan,
+                TradeSecurityId = 1,
+                PortfolioId = 1,
                 Name = "Wipro",
                 SecurityCode = "Wipro",
                 Desc = "Wipro Limited is an Indian multinational corporation that provides information technology, consulting and business process services.",
+                TradeSecurityFundamentals = new HashSet<TradeSecurityFundamentals>(),
+                TradeSecurityPerformance = new HashSet<TradeSecurityPerformance>(),
+                TradeSecurityFees = new HashSet<TradeSecurityFee>(),
+
                 //TradeSecurityFundamentals = new TradeSecurityFundamentals(),
                 //TradeSecurityPerformance = new TradeSecurityPerformance()
                 //TradeSecurityPerformance = new TradeSecurityPerformance
@@ -84,11 +127,12 @@ namespace TradeAnalytics.Persistence
                 //    FaceValue = 2
                 //}
             }) ;
+
             modelBuilder.Entity<TradeSecurityFundamentals>().HasData(
                 new TradeSecurityFundamentals
                 {
-                    TradeSecurityFundamentalsId = Guid.Parse("{07b764b1-aa58-4375-93cd-e30ce54ace3b}"),
-                    TradeSecurityId = wiproTradeSecurity,
+                    TradeSecurityFundamentalsId = 1,
+                    TradeSecurityId = 1,
                     MarketCap = 230618m,
                     PriceToEarning = 18.93m,
                     PriceToBook = 3.51m,
@@ -100,11 +144,12 @@ namespace TradeAnalytics.Persistence
                     BookValue = 120.38m,
                     FaceValue = 2
                 });
+
             modelBuilder.Entity<TradeSecurityPerformance>().HasData(
                 new TradeSecurityPerformance
                 {
-                    TradeSecurityPerformanceId = Guid.Parse("{79bfacfa-59e2-48e1-a494-ed445804221e}"),
-                    TradeSecurityId = wiproTradeSecurity,
+                    TradeSecurityPerformanceId = 1,
+                    TradeSecurityId = 1,
                     Date = DateTime.Now,
                     OpenPrice = 420.05m,
                     PrevClosed = 422.00m,
