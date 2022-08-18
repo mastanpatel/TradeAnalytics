@@ -14,7 +14,7 @@ namespace TradeAnalytics.Persistence.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<T> GetByIdAsync(Guid id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }

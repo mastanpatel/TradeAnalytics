@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TradeAnalytics.Persistence;
 
 namespace TradeAnalytics.Persistence.Migrations
 {
     [DbContext(typeof(TradeAnalyticsDbContext))]
-    partial class TradeAnalyticsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220817055649_addednewitem")]
+    partial class addednewitem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,10 +23,9 @@ namespace TradeAnalytics.Persistence.Migrations
 
             modelBuilder.Entity("TradeAnalytics.Domain.Entities.Portfolio", b =>
                 {
-                    b.Property<int>("PortfolioId")
+                    b.Property<Guid>("PortfolioId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -56,7 +57,7 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            PortfolioId = 1,
+                            PortfolioId = new Guid("939c458e-5e58-4a08-8579-0d9362ebed0f"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Desc = "portfolioMastan is a mastan's portfolio.",
                             IsActive = true,
@@ -66,10 +67,9 @@ namespace TradeAnalytics.Persistence.Migrations
 
             modelBuilder.Entity("TradeAnalytics.Domain.Entities.TradeFee.Brokerage", b =>
                 {
-                    b.Property<int>("BrokerageId")
+                    b.Property<Guid>("BrokerageId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("BrokerName")
                         .HasColumnType("nvarchar(max)");
@@ -89,8 +89,8 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.Property<int>("SecurityType")
                         .HasColumnType("int");
 
-                    b.Property<int>("TradeSecurityFeeId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TradeSecurityFeeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("BrokerageId");
 
@@ -102,10 +102,9 @@ namespace TradeAnalytics.Persistence.Migrations
 
             modelBuilder.Entity("TradeAnalytics.Domain.Entities.TradeFee.StampDuty", b =>
                 {
-                    b.Property<int>("StampDutyId")
+                    b.Property<Guid>("StampDutyId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("StampDutyPct")
                         .HasColumnType("decimal(18,2)");
@@ -113,8 +112,8 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TradeSecurityFeeId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TradeSecurityFeeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("StampDutyId");
 
@@ -126,10 +125,9 @@ namespace TradeAnalytics.Persistence.Migrations
 
             modelBuilder.Entity("TradeAnalytics.Domain.Entities.TradeFee.TradeSecurityFee", b =>
                 {
-                    b.Property<int>("TradeSecurityFeeId")
+                    b.Property<Guid>("TradeSecurityFeeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -155,8 +153,8 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.Property<decimal>("Tax")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("TradeSecurityId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TradeSecurityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("TurnOverFee")
                         .HasColumnType("decimal(18,2)");
@@ -170,10 +168,9 @@ namespace TradeAnalytics.Persistence.Migrations
 
             modelBuilder.Entity("TradeAnalytics.Domain.Entities.TradeFee.TradeSecurityTransaction", b =>
                 {
-                    b.Property<int>("TradeSecurityTransactionId")
+                    b.Property<Guid>("TradeSecurityTransactionId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("BuyPrice")
                         .HasColumnType("decimal(18,2)");
@@ -187,8 +184,8 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.Property<int>("TradeQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("TradeSecurityFeeId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TradeSecurityFeeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("TradeType")
                         .HasColumnType("int");
@@ -206,10 +203,9 @@ namespace TradeAnalytics.Persistence.Migrations
 
             modelBuilder.Entity("TradeAnalytics.Domain.Entities.TradeSecurity", b =>
                 {
-                    b.Property<int>("TradeSecurityId")
+                    b.Property<Guid>("TradeSecurityId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -229,8 +225,8 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PortfolioId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PortfolioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("SecurityCode")
                         .HasColumnType("nvarchar(max)");
@@ -244,21 +240,20 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            TradeSecurityId = 1,
+                            TradeSecurityId = new Guid("edcb61fc-b446-48b5-9f43-45a9bc7a4755"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Desc = "Wipro Limited is an Indian multinational corporation that provides information technology, consulting and business process services.",
                             Name = "Wipro",
-                            PortfolioId = 1,
+                            PortfolioId = new Guid("939c458e-5e58-4a08-8579-0d9362ebed0f"),
                             SecurityCode = "Wipro"
                         });
                 });
 
             modelBuilder.Entity("TradeAnalytics.Domain.Entities.TradeSecurityFundamentals", b =>
                 {
-                    b.Property<int>("TradeSecurityFundamentalsId")
+                    b.Property<Guid>("TradeSecurityFundamentalsId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("BookValue")
                         .HasColumnType("decimal(18,2)");
@@ -275,9 +270,6 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.Property<decimal>("FaceValue")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<bool>("IsCurrent")
-                        .HasColumnType("bit");
-
                     b.Property<decimal>("MarketCap")
                         .HasColumnType("decimal(18,2)");
 
@@ -293,46 +285,42 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.Property<decimal>("ReturnOnEquityPerc")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("TradeSecurityId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TradeSecurityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("TradeSecurityFundamentalsId");
 
-                    b.HasIndex("TradeSecurityId");
+                    b.HasIndex("TradeSecurityId")
+                        .IsUnique();
 
                     b.ToTable("TradeSecurityFundamentals");
 
                     b.HasData(
                         new
                         {
-                            TradeSecurityFundamentalsId = 1,
+                            TradeSecurityFundamentalsId = new Guid("07b764b1-aa58-4375-93cd-e30ce54ace3b"),
                             BookValue = 120.38m,
                             DebtToEquity = 0.27m,
                             DividendYield = 1.42m,
                             EarningPerShare = 22.29m,
                             FaceValue = 2m,
-                            IsCurrent = false,
                             MarketCap = 230618m,
                             PriceToBook = 3.51m,
                             PriceToEarning = 18.93m,
                             PriceToEarning_Industry = 28.31m,
                             ReturnOnEquityPerc = 20.18m,
-                            TradeSecurityId = 1
+                            TradeSecurityId = new Guid("edcb61fc-b446-48b5-9f43-45a9bc7a4755")
                         });
                 });
 
             modelBuilder.Entity("TradeAnalytics.Domain.Entities.TradeSecurityPerformance", b =>
                 {
-                    b.Property<int>("TradeSecurityPerformanceId")
+                    b.Property<Guid>("TradeSecurityPerformanceId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsCurrent")
-                        .HasColumnType("bit");
 
                     b.Property<decimal>("OpenPrice")
                         .HasColumnType("decimal(18,2)");
@@ -340,8 +328,8 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.Property<decimal>("PrevClosed")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("TradeSecurityId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TradeSecurityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(18,2)");
@@ -357,19 +345,19 @@ namespace TradeAnalytics.Persistence.Migrations
 
                     b.HasKey("TradeSecurityPerformanceId");
 
-                    b.HasIndex("TradeSecurityId");
+                    b.HasIndex("TradeSecurityId")
+                        .IsUnique();
 
                     b.ToTable("TradeSecurityPerformance");
 
                     b.HasData(
                         new
                         {
-                            TradeSecurityPerformanceId = 1,
-                            Date = new DateTime(2022, 8, 18, 14, 23, 10, 617, DateTimeKind.Local).AddTicks(9038),
-                            IsCurrent = false,
+                            TradeSecurityPerformanceId = new Guid("79bfacfa-59e2-48e1-a494-ed445804221e"),
+                            Date = new DateTime(2022, 8, 17, 11, 26, 46, 917, DateTimeKind.Local).AddTicks(3760),
                             OpenPrice = 420.05m,
                             PrevClosed = 422.00m,
-                            TradeSecurityId = 1,
+                            TradeSecurityId = new Guid("edcb61fc-b446-48b5-9f43-45a9bc7a4755"),
                             Value = 1340000000m,
                             Volume = 3186358m,
                             Week_52_High = 739.85m,
@@ -425,8 +413,8 @@ namespace TradeAnalytics.Persistence.Migrations
             modelBuilder.Entity("TradeAnalytics.Domain.Entities.TradeSecurityFundamentals", b =>
                 {
                     b.HasOne("TradeAnalytics.Domain.Entities.TradeSecurity", null)
-                        .WithMany("TradeSecurityFundamentals")
-                        .HasForeignKey("TradeSecurityId")
+                        .WithOne("TradeSecurityFundamentals")
+                        .HasForeignKey("TradeAnalytics.Domain.Entities.TradeSecurityFundamentals", "TradeSecurityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -434,8 +422,8 @@ namespace TradeAnalytics.Persistence.Migrations
             modelBuilder.Entity("TradeAnalytics.Domain.Entities.TradeSecurityPerformance", b =>
                 {
                     b.HasOne("TradeAnalytics.Domain.Entities.TradeSecurity", null)
-                        .WithMany("TradeSecurityPerformance")
-                        .HasForeignKey("TradeSecurityId")
+                        .WithOne("TradeSecurityPerformance")
+                        .HasForeignKey("TradeAnalytics.Domain.Entities.TradeSecurityPerformance", "TradeSecurityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

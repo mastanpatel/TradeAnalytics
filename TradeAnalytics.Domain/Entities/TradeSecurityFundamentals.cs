@@ -6,8 +6,8 @@ namespace TradeAnalytics.Domain.Entities
 {
     public class TradeSecurityFundamentals 
     {
-        public Guid TradeSecurityFundamentalsId { get; set; }
-        public Guid TradeSecurityId { get; set; }
+        public int TradeSecurityFundamentalsId { get; set; }
+        public int TradeSecurityId { get; set; }
         public decimal MarketCap { get; set; }
         public decimal PriceToEarning { get; set; }
         public decimal PriceToBook { get; set; }
@@ -18,5 +18,6 @@ namespace TradeAnalytics.Domain.Entities
         public decimal DividendYield { get; set; }
         public decimal BookValue { get; set; }
         public decimal FaceValue { get; set; }
+        public bool IsCurrent { get; set; }
     }
 }

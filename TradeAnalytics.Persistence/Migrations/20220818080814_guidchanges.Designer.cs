@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TradeAnalytics.Persistence;
 
 namespace TradeAnalytics.Persistence.Migrations
 {
     [DbContext(typeof(TradeAnalyticsDbContext))]
-    partial class TradeAnalyticsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220818080814_guidchanges")]
+    partial class guidchanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,9 +277,6 @@ namespace TradeAnalytics.Persistence.Migrations
                     b.Property<decimal>("FaceValue")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<bool>("IsCurrent")
-                        .HasColumnType("bit");
-
                     b.Property<decimal>("MarketCap")
                         .HasColumnType("decimal(18,2)");
 
@@ -311,7 +310,6 @@ namespace TradeAnalytics.Persistence.Migrations
                             DividendYield = 1.42m,
                             EarningPerShare = 22.29m,
                             FaceValue = 2m,
-                            IsCurrent = false,
                             MarketCap = 230618m,
                             PriceToBook = 3.51m,
                             PriceToEarning = 18.93m,
@@ -330,9 +328,6 @@ namespace TradeAnalytics.Persistence.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsCurrent")
-                        .HasColumnType("bit");
 
                     b.Property<decimal>("OpenPrice")
                         .HasColumnType("decimal(18,2)");
@@ -365,8 +360,7 @@ namespace TradeAnalytics.Persistence.Migrations
                         new
                         {
                             TradeSecurityPerformanceId = 1,
-                            Date = new DateTime(2022, 8, 18, 14, 23, 10, 617, DateTimeKind.Local).AddTicks(9038),
-                            IsCurrent = false,
+                            Date = new DateTime(2022, 8, 18, 13, 38, 13, 200, DateTimeKind.Local).AddTicks(5062),
                             OpenPrice = 420.05m,
                             PrevClosed = 422.00m,
                             TradeSecurityId = 1,

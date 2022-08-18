@@ -7,6 +7,6 @@ namespace TradeAnalytics.Application.Features.Portfolioes.Queries.GetPortfolioDe
 {
     public class GetPortfolioDetailQuery : IRequest<PortfolioDetailVm>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }
