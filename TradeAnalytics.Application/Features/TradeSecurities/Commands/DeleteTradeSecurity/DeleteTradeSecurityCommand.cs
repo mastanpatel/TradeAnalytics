@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.DeleteTradeSecurity
 {
-    internal class DeleteTradeSecurityCommand
+    public class DeleteTradeSecurityCommand : IRequest
     {
+        public int TradeSecurityId { get; set; }
     }
 }

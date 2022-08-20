@@ -1,11 +1,6 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.CreateTradeSecurity
+﻿namespace TradeAnalytics.Application.Features.TradeSecurities.Queries.GetTradeSecurityList
 {
-    public class CreateTradeSecurityCommand : IRequest<int>
+    public class TradeSecurityListVm
     {
         public int TradeSecurityId { get; set; }
         public int PortfolioId { get; set; }
