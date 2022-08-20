@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace TradeAnalytics.Application.Features.TradeFees.Queries.GetTradeFeeDetail
 {
-    internal class GetTradeFeeDetailQuery
+    public class GetTradeFeeDetailQuery : IRequest<TradeFeeDetailVm>
     {
+        public int Id { get; set; }
     }
 }

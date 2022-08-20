@@ -7,16 +7,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using TradeAnalytics.Application.Contracts.Persistance;
 using TradeAnalytics.Application.Exceptions;
+using TradeAnalytics.Application.Features.TradeFees.Commands.UpdateTradeFee;
 using TradeAnalytics.Domain.Entities;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.UpdateTradeSecurity
 {
-    public class UpdateTradeSecurityCommandHandler : IRequestHandler<UpdateTradeSecurityCommand>
+    public class UpdateTradeCommandHandler : IRequestHandler<UpdateTradeSecurityCommand>
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<TradeSecurity> _tradeSecurityRepository;
 
-        public UpdateTradeSecurityCommandHandler(IMapper mapper, IAsyncRepository<TradeSecurity> tradeSecurityRepository)
+        public UpdateTradeCommandHandler(IMapper mapper, IAsyncRepository<TradeSecurity> tradeSecurityRepository)
         {
             _mapper = mapper;
             _tradeSecurityRepository = tradeSecurityRepository;
@@ -31,7 +32,7 @@ namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.UpdateTra
 
             }
 
-            var validator = new UpdateTradeSecurityCommandValidator();
+            var validator = new UpdateTradeFeeCommandValidator();
             var validateResult = await validator.ValidateAsync(request);
 
             if (validateResult.Errors.Count > 0)

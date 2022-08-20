@@ -3,9 +3,9 @@ using TradeAnalytics.Domain.Entities;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Queries.GetTradeSecurityDetail
 {
-    public class TradeSecurityDetailVm
+    public class TradeFeeDetailVm
     {
-        public TradeSecurityDetailVm()
+        public TradeFeeDetailVm()
         {
             this.TradeSecurityPerformance = new HashSet<TradeSecurityPerformanceDto>();
             this.TradeSecurityFundamentals = new HashSet<TradeSecurityFundamentalsDto>();

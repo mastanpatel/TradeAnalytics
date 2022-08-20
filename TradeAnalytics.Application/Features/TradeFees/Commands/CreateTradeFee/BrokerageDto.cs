@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TradeAnalytics.Domain.Enums;
+﻿using TradeAnalytics.Domain.Enums;
 
-namespace TradeAnalytics.Domain.Entities.TradeFee
+namespace TradeAnalytics.Application.Features.TradeFees.Commands.CreateTradeFee
 {
-    public class Brokerage 
+    public class BrokerageDto
     {
         public int BrokerageId { get; set; }
         public int TradeSecurityFeeId { get; set; }

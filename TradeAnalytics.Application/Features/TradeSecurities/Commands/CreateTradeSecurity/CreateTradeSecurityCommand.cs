@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.CreateTradeSecurity
 {
-    public class CreateTradeSecurityCommand : IRequest<int>
+    public class CreateTradeSecurityFeeCommand : IRequest<int>
     {
         public int TradeSecurityId { get; set; }
         public int PortfolioId { get; set; }

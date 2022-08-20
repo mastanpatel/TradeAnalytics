@@ -1,13 +1,16 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TradeAnalytics.Domain.Entities.TradeFee;
+﻿using System.Collections.Generic;
+using TradeAnalytics.Application.Features.TradeFees.Commands.CreateTradeFee;
+using TradeAnalytics.Domain.Entities;
 
-namespace TradeAnalytics.Application.Features.TradeFees.Commands.CreateTradeFee
+namespace TradeAnalytics.Application.Features.TradeFees.Queries.GetTradeFeeDetail
 {
-    public class CreateTradeFeeCommand : IRequest<int>
+    public class TradeFeeDetailVm
     {
+        public TradeFeeDetailVm()
+        {
+            this.Brokerage = new BrokerageDto();
+            this.StampDuty = new StampDutyDto();
+        }
         public int TradeSecurityFeeId { get; set; }
         public int TradeSecurityId { get; set; }
         public BrokerageDto Brokerage { get; set; }

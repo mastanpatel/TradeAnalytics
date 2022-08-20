@@ -11,12 +11,12 @@ using TradeAnalytics.Domain.Entities;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.DeleteTradeSecurity
 {
-    public class DeleteTradeSecurityCommandHandler : IRequestHandler<DeleteTradeSecurityCommand>
+    public class DeleteTradeFeeCommandHandler : IRequestHandler<DeleteTradeSecurityCommand>
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<TradeSecurity> _tradeSecurityRepository;
 
-        public DeleteTradeSecurityCommandHandler(IMapper mapper, IAsyncRepository<TradeSecurity> tradeSecurityRepository)
+        public DeleteTradeFeeCommandHandler(IMapper mapper, IAsyncRepository<TradeSecurity> tradeSecurityRepository)
         {
             _mapper = mapper;
             _tradeSecurityRepository = tradeSecurityRepository;

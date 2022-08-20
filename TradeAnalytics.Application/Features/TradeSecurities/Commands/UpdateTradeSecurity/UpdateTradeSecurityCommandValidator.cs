@@ -5,9 +5,9 @@ using System.Text;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.UpdateTradeSecurity
 {
-    public class UpdateTradeSecurityCommandValidator : AbstractValidator<UpdateTradeSecurityCommand>
+    public class UpdateTradeFeeCommandValidator : AbstractValidator<UpdateTradeSecurityCommand>
     {
-        public UpdateTradeSecurityCommandValidator()
+        public UpdateTradeFeeCommandValidator()
         {
 
         }

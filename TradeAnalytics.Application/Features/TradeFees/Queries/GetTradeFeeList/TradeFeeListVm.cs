@@ -1,4 +1,4 @@
-﻿namespace TradeAnalytics.Application.Features.TradeSecurities.Queries.GetTradeSecurityList
+﻿namespace TradeAnalytics.Application.Features.TradeFees.Queries.GetTradeFeeList
 {
     public class TradeFeeListVm
     {

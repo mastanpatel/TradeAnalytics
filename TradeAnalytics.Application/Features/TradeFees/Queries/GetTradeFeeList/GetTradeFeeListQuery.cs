@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using TradeAnalytics.Application.Features.TradeSecurities.Queries.GetTradeSecurityList;
 
 namespace TradeAnalytics.Application.Features.TradeFees.Queries.GetTradeFeeList
 {
-    internal class GetTradeFeeListQuery
+    public class GetTradeFeeListQuery : IRequest<List<TradeFeeListVm>>
     {
     }
 }
