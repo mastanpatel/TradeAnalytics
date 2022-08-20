@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TradeAnalytics.Application.Features.Portfolioes.Commands.CreatePortfolio;
+using TradeAnalytics.Application.Features.Portfolioes.Commands.DeletePortfolio;
+using TradeAnalytics.Application.Features.Portfolioes.Commands.UpdatePortfolio;
 using TradeAnalytics.Application.Features.Portfolioes.Queries.GetPortfolioDetail;
 using TradeAnalytics.Application.Features.Portfolioes.Queries.GetPortfolioList;
 using TradeAnalytics.Domain.Entities;
@@ -15,8 +17,10 @@ namespace TradeAnalytics.Application.Profiles
         {
             CreateMap<Portfolio, PortfolioListVm>().ReverseMap();
             CreateMap<Portfolio, PortfolioDetailVm>().ReverseMap();
-            CreateMap<TradeSecurity, TradeSecurityDto>();
-            CreateMap<Portfolio, CreatePortfolioCommand>();
+            CreateMap<TradeSecurity, TradeSecurityDto>().ReverseMap();
+            CreateMap<Portfolio, CreatePortfolioCommand>().ReverseMap();
+            CreateMap<Portfolio, UpdatePortfolioCommand>().ReverseMap();
+            CreateMap<Portfolio, DeletePortfolioCommand>().ReverseMap();
         }
     }
 }

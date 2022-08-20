@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Portfolioes\Commands\DeletePortfolio\" />
-    <Folder Include="Features\Portfolioes\Commands\UpdatePortfolio\" />
+    <Folder Include="Features\TradeFees\" />
+    <Folder Include="Features\TradeSecurities\" />
   </ItemGroup>
 
 </Project>
