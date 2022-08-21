@@ -31,9 +31,9 @@ namespace TradeAnalytics.Api.Controllers
         [HttpGet("{id}", Name = "GetTradeSecurityDetails")]
         public async Task<ActionResult<List<TradeSecurityDetailVm>>> GetTradeSecurityDetails(int id)
         {
-            var getPortfolioDetailQuery = new GetTradeSecurityDetailQuery() { Id = id };
+            var getTradeSecurityDetailQuery = new GetTradeSecurityDetailQuery() { Id = id };
 
-            var dtos = await _mediator.Send(getPortfolioDetailQuery);
+            var dtos = await _mediator.Send(getTradeSecurityDetailQuery);
 
             return Ok(dtos);
         }

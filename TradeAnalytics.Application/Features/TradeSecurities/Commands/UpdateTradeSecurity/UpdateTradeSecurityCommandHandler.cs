@@ -24,11 +24,11 @@ namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.UpdateTra
         }
         public async Task<Unit> Handle(UpdateTradeSecurityCommand request, CancellationToken cancellationToken)
         {
-            var tradeSecurityToUpdate = await _tradeSecurityRepository.GetByIdAsync(request.Id);
+            var tradeSecurityToUpdate = await _tradeSecurityRepository.GetByIdAsync(request.TradeSecurityId);
 
             if (tradeSecurityToUpdate == null)
             {
-                throw new NotFoundException(nameof(TradeSecurity), request.Id.ToString());
+                throw new NotFoundException(nameof(TradeSecurity), request.TradeSecurityId.ToString());
 
             }
 

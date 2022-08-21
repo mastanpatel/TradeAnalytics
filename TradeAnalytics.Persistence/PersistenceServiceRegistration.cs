@@ -21,7 +21,13 @@ namespace TradeAnalytics.Persistence
 
             services.AddScoped<IPortfolioRepository, PortfolioRepository>();
             services.AddScoped<ITradeSecurityRepository, TradeSecuirtyRepository>();
-            // services.AddScoped<ITradeSecurityFeeRespository, TradeSecuirtyFeeRepository>();
+            services.AddScoped<ITradeSecurityFeeRespository, TradeSecurityFeeRespository>();
+            services.AddScoped<ITradeSecurityTransactionRepository, TradeSecurityTransactionRepository>();
+
+            services.AddScoped<ITradeSecurityFundamentalsRepository, TradeSecurityFundamentalsRepository>();
+            services.AddScoped<ITradeSecurityPerformanceRepository, TradeSecurityPerformanceRepository>();
+            services.AddScoped<IBrokerageRepository, BrokerageRepository>();
+            services.AddScoped<IStampDutyRepository, StampDutyRepository>();
 
             return services;
              

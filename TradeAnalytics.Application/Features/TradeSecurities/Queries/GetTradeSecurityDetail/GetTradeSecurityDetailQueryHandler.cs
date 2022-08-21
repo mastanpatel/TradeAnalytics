@@ -15,13 +15,16 @@ namespace TradeAnalytics.Application.Features.TradeSecurities.Queries.GetTradeSe
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<TradeSecurity> _tradeSecurityRepository;
-        //private readonly IAsyncRepository<TradeSecurityFundamentals> _tradeSecurityFundamentsRepository;
-        //private readonly IAsyncRepository<TradeSecurityPerformance> _tradeSecurityPerformanceRepository;
+        private readonly IAsyncRepository<TradeSecurityFundamentals> _tradeSecurityFundamentals;
+        private readonly IAsyncRepository<TradeSecurityPerformance> _tradeSecurityPerformance;
 
-        public GetTradeSecurityDetailQueryHandler(IMapper mapper, IAsyncRepository<TradeSecurity> tradeSecurityRepository)
+        public GetTradeSecurityDetailQueryHandler(IMapper mapper, IAsyncRepository<TradeSecurity> tradeSecurityRepository,
+            IAsyncRepository<TradeSecurityFundamentals> tradeSecurityFundamentals, IAsyncRepository<TradeSecurityPerformance> tradeSecurityPerformance)
         {
             _mapper = mapper;
             _tradeSecurityRepository = tradeSecurityRepository;
+            _tradeSecurityFundamentals = tradeSecurityFundamentals;
+            _tradeSecurityPerformance = tradeSecurityPerformance;
         }
         public async Task<TradeSecurityDetailVm> Handle(GetTradeSecurityDetailQuery request, CancellationToken cancellationToken)
         {
@@ -29,8 +32,8 @@ namespace TradeAnalytics.Application.Features.TradeSecurities.Queries.GetTradeSe
 
             var tradeSecurityDetailDto = _mapper.Map<TradeSecurityDetailVm>(tradeSecurityDetail);
 
-            var allTradedSecurityPerformance = (await _tradeSecurityRepository.ListAllAsync()).Where(x => x.TradeSecurityId == tradeSecurityDetail.TradeSecurityId);
-            var allTradedSecurityFundamentals = (await _tradeSecurityRepository.ListAllAsync()).Where(x => x.TradeSecurityId == tradeSecurityDetail.TradeSecurityId);
+            var allTradedSecurityPerformance = (await _tradeSecurityPerformance.ListAllAsync()).Where(x => x.TradeSecurityId == tradeSecurityDetail.TradeSecurityId);
+            var allTradedSecurityFundamentals = (await _tradeSecurityFundamentals.ListAllAsync()).Where(x => x.TradeSecurityId == tradeSecurityDetail.TradeSecurityId);
 
             tradeSecurityDetailDto.TradeSecurityFundamentals = _mapper.Map<List<TradeSecurityFundamentalsDto>>(allTradedSecurityFundamentals);
             tradeSecurityDetailDto.TradeSecurityPerformance = _mapper.Map<List<TradeSecurityPerformanceDto>>(allTradedSecurityPerformance);

@@ -7,6 +7,10 @@ namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.UpdateTra
 {
     public class UpdateTradeSecurityCommand : IRequest
     {
-        public int Id { get; set; }
+        public int TradeSecurityId { get; set; }
+        public int PortfolioId { get; set; }
+        public string Name { get; set; }
+        public string SecurityCode { get; set; }
+        public string Desc { get; set; }
     }
 }

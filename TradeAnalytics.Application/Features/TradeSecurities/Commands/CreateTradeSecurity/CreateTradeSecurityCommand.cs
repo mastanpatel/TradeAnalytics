@@ -7,7 +7,6 @@ namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.CreateTra
 {
     public class CreateTradeSecurityCommand : IRequest<int>
     {
-        public int TradeSecurityId { get; set; }
         public int PortfolioId { get; set; }
         public string Name { get; set; }
         public string SecurityCode { get; set; }

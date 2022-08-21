@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TradeAnalytics.Application.Contracts.Persistance;
-using TradeAnalytics.Domain.Entities;
 using TradeAnalytics.Domain.Entities.TradeFee;
 
 namespace TradeAnalytics.Application.Features.TradeFees.Queries.GetTradeFeeDetail
@@ -16,13 +12,16 @@ namespace TradeAnalytics.Application.Features.TradeFees.Queries.GetTradeFeeDetai
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<TradeSecurityFee> _tradeSecurityFeeRepository;
-        //private readonly IAsyncRepository<TradeSecurityFundamentals> _tradeSecurityFundamentsRepository;
-        //private readonly IAsyncRepository<TradeSecurityPerformance> _tradeSecurityPerformanceRepository;
+        private readonly IAsyncRepository<StampDuty> _stampDutyRepository;
+        private readonly IAsyncRepository<Brokerage> _brokerageRepository;
 
-        public GetTradeFeeDetailQueryHandler(IMapper mapper, IAsyncRepository<TradeSecurityFee> tradeSecurityFeeRepository)
+        public GetTradeFeeDetailQueryHandler(IMapper mapper, IAsyncRepository<TradeSecurityFee> tradeSecurityFeeRepository, 
+            IAsyncRepository<StampDuty> stampDutyRepository, IAsyncRepository<Brokerage> brokerageRepository)
         {
             _mapper = mapper;
             _tradeSecurityFeeRepository = tradeSecurityFeeRepository;
+            _stampDutyRepository = stampDutyRepository;
+            _brokerageRepository = brokerageRepository;
         }
         public async Task<TradeFeeDetailVm> Handle(GetTradeFeeDetailQuery request, CancellationToken cancellationToken)
         {
@@ -30,14 +29,27 @@ namespace TradeAnalytics.Application.Features.TradeFees.Queries.GetTradeFeeDetai
 
             var tradeSecurityFeeDetailDto = _mapper.Map<TradeFeeDetailVm>(tradeSecurityFeeDetail);
 
-            var allBrokarage = (await _tradeSecurityFeeRepository.ListAllAsync()).Where(x => x.TradeSecurityFeeId == tradeSecurityFeeDetail.TradeSecurityFeeId);
-            var allStampDuty = (await _tradeSecurityFeeRepository.ListAllAsync()).Where(x => x.TradeSecurityFeeId == tradeSecurityFeeDetail.TradeSecurityFeeId);
+            var allBrokarage = (await _brokerageRepository.ListAllAsync()).Where(x => x.TradeSecurityFeeId == tradeSecurityFeeDetail.TradeSecurityFeeId);
+            var allStampDuty = (await _stampDutyRepository.ListAllAsync()).Where(x => x.TradeSecurityFeeId == tradeSecurityFeeDetail.TradeSecurityFeeId);
 
-            tradeSecurityFeeDetailDto.Brokerage = _mapper.Map<BrokerageDto>(allBrokarage);
-            tradeSecurityFeeDetailDto.StampDuty = _mapper.Map<StampDutyDto>(allStampDuty);
+            if (allBrokarage.FirstOrDefault().BrokerageId > 0)
+            {
+                tradeSecurityFeeDetailDto.Brokerage = _mapper.Map<BrokerageDto>(allBrokarage.FirstOrDefault());
+            }
+            if (allStampDuty != null)
+            {
+                tradeSecurityFeeDetailDto.StampDuty = _mapper.Map<StampDutyDto>(allStampDuty.FirstOrDefault());
+            }
+            if (allBrokarage.FirstOrDefault().BrokerageId == 0)
+            {
+                tradeSecurityFeeDetailDto.Brokerage = new BrokerageDto();
+            }
+            if (allStampDuty == null)
+            {
+                tradeSecurityFeeDetailDto.StampDuty = new StampDutyDto();
+            }
 
             return tradeSecurityFeeDetailDto;
-
 
         }
     }
