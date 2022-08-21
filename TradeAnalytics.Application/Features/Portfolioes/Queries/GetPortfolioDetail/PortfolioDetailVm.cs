@@ -7,7 +7,11 @@ namespace TradeAnalytics.Application.Features.Portfolioes.Queries.GetPortfolioDe
 {
     public class PortfolioDetailVm
     {
-        public Guid PortfolioId { get; set; }
+        public PortfolioDetailVm()
+        {
+            this.TradeSecurities = new HashSet<TradeSecurityDto>();
+        }
+        public int PortfolioId { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }
         public bool IsActive { get; set; }

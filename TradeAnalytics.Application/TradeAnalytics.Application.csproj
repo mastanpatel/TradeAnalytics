@@ -17,9 +17,4 @@
     <ProjectReference Include="..\TradeAnalytics.Domain\TradeAnalytics.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Portfolioes\Commands\DeletePortfolio\" />
-    <Folder Include="Features\Portfolioes\Commands\UpdatePortfolio\" />
-  </ItemGroup>
-
 </Project>

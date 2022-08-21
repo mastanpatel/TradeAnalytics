@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TradeAnalytics.Persistence;
 
 namespace TradeAnalytics.Persistence.Migrations
 {
     [DbContext(typeof(TradeAnalyticsDbContext))]
-    partial class TradeAnalyticsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220821060246_dbchanges")]
+    partial class dbchanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -365,7 +367,7 @@ namespace TradeAnalytics.Persistence.Migrations
                         new
                         {
                             TradeSecurityPerformanceId = 1,
-                            Date = new DateTime(2022, 8, 21, 11, 35, 44, 672, DateTimeKind.Local).AddTicks(8506),
+                            Date = new DateTime(2022, 8, 21, 11, 32, 44, 150, DateTimeKind.Local).AddTicks(9894),
                             IsCurrent = false,
                             OpenPrice = 420.05m,
                             PrevClosed = 422.00m,

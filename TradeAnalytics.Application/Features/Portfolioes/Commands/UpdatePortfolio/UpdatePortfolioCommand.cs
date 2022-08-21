@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace TradeAnalytics.Application.Features.Portfolioes.Queries.GetPortfolioList
+namespace TradeAnalytics.Application.Features.Portfolioes.Commands.UpdatePortfolio
 {
-    public class PortfolioListVm
+    public class UpdatePortfolioCommand : IRequest
     {
         public int PortfolioId { get; set; }
         public string Name { get; set; }
