@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TradeAnalytics.Application.Features.TradeFees.Queries.GetTradeFeeDetail;
 using TradeAnalytics.Domain.Entities.TradeFee;
 
 namespace TradeAnalytics.Application.Features.TradeFees.Commands.CreateTradeFee
