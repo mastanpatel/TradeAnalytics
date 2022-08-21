@@ -7,7 +7,11 @@ namespace TradeAnalytics.Domain.Entities
 {
     public class Portfolio : AuditableEntity
     {
-        public Guid PortfolioId { get; set; }
+        public Portfolio()
+        {
+            this.TradeSecurities = new HashSet<TradeSecurity>();
+        }
+        public int PortfolioId { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }
         public bool IsActive { get; set; }

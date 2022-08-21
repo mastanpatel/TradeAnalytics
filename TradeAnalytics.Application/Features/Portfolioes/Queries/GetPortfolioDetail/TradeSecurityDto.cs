@@ -7,12 +7,17 @@ namespace TradeAnalytics.Application.Features.Portfolioes.Queries.GetPortfolioDe
 {
     public class TradeSecurityDto
     {
-        public Guid TradeSecurityId { get; set; }
-        public Guid PortfolioId { get; set; }
+        public TradeSecurityDto()
+        {
+            this.TradeSecurityPerformance = new HashSet<TradeSecurityPerformance>();
+            this.TradeSecurityFundamentals = new HashSet<TradeSecurityFundamentals>();
+        }
+        public int TradeSecurityId { get; set; }
+        public int PortfolioId { get; set; }
         public string Name { get; set; }
         public string SecurityCode { get; set; }
         public string Desc { get; set; }
-        public TradeSecurityPerformance TradeSecurityPerformance { get; set; }
-        public TradeSecurityFundamentals TradeSecurityFundamentals { get; set; }
+        public ICollection<TradeSecurityPerformance> TradeSecurityPerformance { get; set; }
+        public ICollection<TradeSecurityFundamentals> TradeSecurityFundamentals { get; set; }
     }
 }

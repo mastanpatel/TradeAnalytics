@@ -10,7 +10,7 @@ using TradeAnalytics.Domain.Entities;
 
 namespace TradeAnalytics.Application.Features.Portfolioes.Commands.CreatePortfolio
 {
-    public class CreatePortfolioCommandHandler : IRequestHandler<CreatePortfolioCommand, Guid>
+    public class CreatePortfolioCommandHandler : IRequestHandler<CreatePortfolioCommand, int>
     {
         private readonly IPortfolioRepository _portfolioRepository;
         private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ namespace TradeAnalytics.Application.Features.Portfolioes.Commands.CreatePortfol
             _mapper = mapper;
             _portfolioRepository = portfolioRepository;
         }
-        public async Task<Guid> Handle(CreatePortfolioCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreatePortfolioCommand request, CancellationToken cancellationToken)
         {
             var validator = new CreatePortfolioCommandValidator();
             var validationResult = await validator.ValidateAsync(request);
