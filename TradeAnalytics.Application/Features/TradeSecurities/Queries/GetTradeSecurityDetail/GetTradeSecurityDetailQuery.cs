@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Queries.GetTradeSecurityDetail
 {
-    public class GetTradeSecurityDetailQuery : IRequest<TradeFeeDetailVm>
+    public class GetTradeSecurityDetailQuery : IRequest<TradeSecurityDetailVm>
     {
         public int Id { get; set; }
     }

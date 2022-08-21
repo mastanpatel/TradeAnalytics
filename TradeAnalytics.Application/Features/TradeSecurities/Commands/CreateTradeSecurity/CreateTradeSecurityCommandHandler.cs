@@ -10,7 +10,7 @@ using TradeAnalytics.Domain.Entities;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.CreateTradeSecurity
 {
-    public class CreateTradeSecurityCommandHandler : IRequestHandler<CreateTradeSecurityFeeCommand, int>
+    public class CreateTradeSecurityCommandHandler : IRequestHandler<CreateTradeSecurityCommand, int>
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<TradeSecurity> _tradeSecurityRepository;
@@ -20,7 +20,7 @@ namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.CreateTra
             _mapper = mapper;
             _tradeSecurityRepository = tradeSecurityRepository;
         }
-        public async Task<int> Handle(CreateTradeSecurityFeeCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateTradeSecurityCommand request, CancellationToken cancellationToken)
         {
             //validate the data
             var validator = new CreateTradeSecurityCommandValidator();

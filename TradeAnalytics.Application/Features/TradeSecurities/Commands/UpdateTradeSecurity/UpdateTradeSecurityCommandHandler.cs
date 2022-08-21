@@ -32,7 +32,7 @@ namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.UpdateTra
 
             }
 
-            var validator = new UpdateTradeFeeCommandValidator();
+            var validator = new UpdateTradSecurityCommandValidator();
             var validateResult = await validator.ValidateAsync(request);
 
             if (validateResult.Errors.Count > 0)

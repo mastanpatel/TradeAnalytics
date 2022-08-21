@@ -11,23 +11,23 @@ using TradeAnalytics.Domain.Entities;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Queries.GetTradeSecurityDetail
 {
-    public class GetTradeFeeDetailQueryHandler : IRequestHandler<GetTradeSecurityDetailQuery, TradeFeeDetailVm>
+    public class GetTradeSecurityDetailQueryHandler : IRequestHandler<GetTradeSecurityDetailQuery, TradeSecurityDetailVm>
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<TradeSecurity> _tradeSecurityRepository;
         //private readonly IAsyncRepository<TradeSecurityFundamentals> _tradeSecurityFundamentsRepository;
         //private readonly IAsyncRepository<TradeSecurityPerformance> _tradeSecurityPerformanceRepository;
 
-        public GetTradeFeeDetailQueryHandler(IMapper mapper, IAsyncRepository<TradeSecurity> tradeSecurityRepository)
+        public GetTradeSecurityDetailQueryHandler(IMapper mapper, IAsyncRepository<TradeSecurity> tradeSecurityRepository)
         {
             _mapper = mapper;
             _tradeSecurityRepository = tradeSecurityRepository;
         }
-        public async Task<TradeFeeDetailVm> Handle(GetTradeSecurityDetailQuery request, CancellationToken cancellationToken)
+        public async Task<TradeSecurityDetailVm> Handle(GetTradeSecurityDetailQuery request, CancellationToken cancellationToken)
         {
             var tradeSecurityDetail = await _tradeSecurityRepository.GetByIdAsync(request.Id);
 
-            var tradeSecurityDetailDto = _mapper.Map<TradeFeeDetailVm>(tradeSecurityDetail);
+            var tradeSecurityDetailDto = _mapper.Map<TradeSecurityDetailVm>(tradeSecurityDetail);
 
             var allTradedSecurityPerformance = (await _tradeSecurityRepository.ListAllAsync()).Where(x => x.TradeSecurityId == tradeSecurityDetail.TradeSecurityId);
             var allTradedSecurityFundamentals = (await _tradeSecurityRepository.ListAllAsync()).Where(x => x.TradeSecurityId == tradeSecurityDetail.TradeSecurityId);

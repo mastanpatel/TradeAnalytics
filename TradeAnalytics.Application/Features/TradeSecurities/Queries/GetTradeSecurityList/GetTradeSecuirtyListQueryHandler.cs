@@ -11,21 +11,21 @@ using TradeAnalytics.Domain.Entities;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Queries.GetTradeSecurityList
 {
-    public class GetTradeFeeListQueryHandler : IRequestHandler<GetTradeSecuirtyListQuery, List<TradeFeeListVm>>
+    public class GetTradSecurityListQueryHandler : IRequestHandler<GetTradeSecuirtyListQuery, List<TradeSecurityListVm>>
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<TradeSecurity> _tradeSecurityRepository;
 
-        public GetTradeFeeListQueryHandler(IMapper mapper, IAsyncRepository<TradeSecurity> tradeSecurityRepository)
+        public GetTradSecurityListQueryHandler(IMapper mapper, IAsyncRepository<TradeSecurity> tradeSecurityRepository)
         {
             _mapper = mapper;
             _tradeSecurityRepository = tradeSecurityRepository;
         }
-        public async Task<List<TradeFeeListVm>> Handle(GetTradeSecuirtyListQuery request, CancellationToken cancellationToken)
+        public async Task<List<TradeSecurityListVm>> Handle(GetTradeSecuirtyListQuery request, CancellationToken cancellationToken)
         {
               var tradeSecurityList = (await _tradeSecurityRepository.ListAllAsync()).OrderBy(x => x.LastModifiedDate);
 
-            return _mapper.Map<List<TradeFeeListVm>>(tradeSecurityList);
+            return _mapper.Map<List<TradeSecurityListVm>>(tradeSecurityList);
         }
     }
 }

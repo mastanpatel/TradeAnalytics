@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TradeAnalytics.Application.Features.TradeSecurities.Commands.CreateTradeSecurity
 {
-    public class CreateTradeSecurityCommandValidator : AbstractValidator<CreateTradeSecurityFeeCommand>
+    public class CreateTradeSecurityCommandValidator : AbstractValidator<CreateTradeSecurityCommand>
     {
         public CreateTradeSecurityCommandValidator()
         {
