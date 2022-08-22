@@ -33,7 +33,7 @@
                         .Location(ToolbarItemLocation.Before)
                         .CssClass("menu-button");
                     items.Add()
-                        .Html("<div>TradeAnalytics</div>")
+                        .Html("<div>Trade Analytics</div>")
                         .Location(ToolbarItemLocation.Before)
                         .CssClass("header-title");
                 })
@@ -52,9 +52,9 @@
                         <div class="content-block">
                             <div class="content-footer">
                                 <div id="footer">
-                                    Copyright (c) 2000-2022 Developer Express Inc.
+                                    Copyright (c) 2022 Mastan Patel.
                                     <br />
-                                    All trademarks or registered trademarks are property of their respective owners.
+                                    All trademarks or registered.
                                 </div>
                             </div>
                         </div>
@@ -69,6 +69,7 @@
         <div class="menu-container dx-swatch-additional">
 
             @functions{
+                string GetUrl(string action, string controller) => Url.Action(action,controller);
                 string GetUrl(string action) => Url.Action(action);
                 string GetCurrentUrl() => Url.Action(ViewContext.RouteData.Values["action"].ToString());
                 bool IsCurrentUrl(string pageName) => GetUrl(pageName) == GetCurrentUrl();
@@ -80,13 +81,75 @@
                     items.Add()
                         .Text("Home")
                         .Icon("home")
-                        .Option("path", GetUrl("Index"))
+                        .Option("path", GetUrl("Index","Home"))
                         .Selected(IsCurrentUrl("Index"));
+                    
+                    items.Add()
+                        .Text("Portfolio")
+                        .Icon("product")
+                        //.Option("path", GetUrl("Index"))
+                        //.Selected(IsCurrentUrl("Index"))
+                        .Items(items => {
+                            items.Add()
+                            .Text("View Portfolios")
+                            .Icon("contentlayout")
+                            .Option("path", GetUrl("Index","portfolio"))
+                            .Selected(IsCurrentUrl("Index"));
+
+                            items.Add()
+                            .Text("Add Portfolio")
+                            .Icon("add")
+                            .Option("path", GetUrl("Details","portfolio"))
+                            .Selected(IsCurrentUrl("Index"));
+                        });
+
+                    items.Add()
+                        .Text("Securities")
+                        .Icon("box")
+                        //.Option("path", GetUrl("Index"))
+                        //.Selected(IsCurrentUrl("Index"))
+                        .Items(items => {
+                            items.Add()
+                            .Text("View Securities")
+                            .Icon("contentlayout")
+                            //.Option("path", GetUrl("Index"));
+                            .Option("Portfolio/path",GetUrl("Index","Home"));
+                            //.Selected(IsCurrentUrl("Index"));
+
+                            items.Add()
+                            .Text("Add Security")
+                            .Icon("add")
+                            .Option("path", GetUrl("Index","Home"));
+                            //.Selected(IsCurrentUrl("Index"));
+                        });
+                    items.Add()
+                        .Text("Fees")
+                        .Icon("money")
+                        //.Option("path", GetUrl("Index"))
+                        //.Selected(IsCurrentUrl("Index"))
+                        .Items(items => {
+                            items.Add()
+                            .Text("View Security Fee")
+                            .Icon("contentlayout")
+                            .Option("path", GetUrl("Index","Home"));
+                            //.Selected(IsCurrentUrl("Index"));
+
+                            items.Add()
+                            .Text("Brokerage")
+                            .Icon("money")
+                            .Option("path", GetUrl("Index","Home"));
+                            //.Selected(IsCurrentUrl("Index"));
+
+                            items.Add()
+                            .Text("StampDuty")
+                            .Icon("money")
+                            .Option("path", GetUrl("Index","Home"));
+                        });
 
                     items.Add()
                         .Text("About")
                         .Icon("info")
-                        .Option("path", GetUrl("About"))
+                        .Option("path", GetUrl("About","Home"))
                         .Selected(IsCurrentUrl("About"));
                 })
                 .ExpandEvent(TreeViewExpandEvent.Click)

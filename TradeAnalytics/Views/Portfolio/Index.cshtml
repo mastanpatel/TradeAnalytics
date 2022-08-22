@@ -1,0 +1,26 @@
+﻿@using TradeAnalytics.ViewModels
+
+<h2 class="content-block">Home</h2>
+
+@(Html.DevExtreme().DataGrid<PortfolioListViewModel>()
+    .ElementAttr(new { @class = "dx-card wide-card" })
+    .DataSource(d => d.Mvc().Controller("PortfolioData").LoadAction("Get").Key("PortfolioId"))
+    .ShowBorders(false)
+    .FilterRow(f => f.Visible(true))
+    .FocusedRowEnabled(true)
+    .FocusedRowIndex(0)
+    .ColumnAutoWidth(true)
+    .ColumnHidingEnabled(true)
+    .Columns(columns => {
+        columns.AddFor(m => m.PortfolioId);
+        columns.AddFor(m => m.Name);
+        columns.AddFor(m => m.Desc);
+        columns.AddFor(m => m.IsActive);
+    })
+    .Paging(p => p.PageSize(10))
+    .Pager(p => p
+        .ShowPageSizeSelector(true)
+        .AllowedPageSizes(new[] { 5, 15, 20 })
+        .ShowInfo(true)
+    )
+)
