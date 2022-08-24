@@ -17,10 +17,6 @@
     </PackageReference>
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\TradeAnalytics.Identity\TradeAnalytics.Identity.csproj" />
-    </ItemGroup>
-
     <ProjectExtensions><VisualStudio><UserProperties TemplateFeatures="NETCORE" /></VisualStudio></ProjectExtensions>
 
 </Project>

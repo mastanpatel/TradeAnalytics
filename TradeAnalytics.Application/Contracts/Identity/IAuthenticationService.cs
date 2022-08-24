@@ -9,6 +9,6 @@ namespace TradeAnalytics.Application.Contracts.Identity
     public interface IAuthenticationService
     {
         Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request);
-        Task<RegistrationRequest> RegisterAsync(RegistrationRequest request);
+        Task<RegistrationResponse> RegisterAsync(RegistrationRequest request);
     }
 }

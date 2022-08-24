@@ -78,7 +78,9 @@ namespace TradeAnalytics.Api
 
             app.UseCors("Open");
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
