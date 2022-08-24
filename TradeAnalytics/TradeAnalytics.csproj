@@ -11,6 +11,14 @@
     <PackageReference Include="DevExtreme.AspNet.Core" Version="22.1.4" />
     <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.28">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TradeAnalytics.Identity\TradeAnalytics.Identity.csproj" />
     </ItemGroup>
 
     <ProjectExtensions><VisualStudio><UserProperties TemplateFeatures="NETCORE" /></VisualStudio></ProjectExtensions>

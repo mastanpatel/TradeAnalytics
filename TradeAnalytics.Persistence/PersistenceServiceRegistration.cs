@@ -19,6 +19,7 @@ namespace TradeAnalytics.Persistence
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
+            
             services.AddScoped<IPortfolioRepository, PortfolioRepository>();
             services.AddScoped<ITradeSecurityRepository, TradeSecuirtyRepository>();
             services.AddScoped<ITradeSecurityFeeRespository, TradeSecurityFeeRespository>();

@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TradeAnalytics.Api.Utility;
 using TradeAnalytics.Application;
+using TradeAnalytics.Identity;
 using TradeAnalytics.Persistence;
 
 namespace TradeAnalytics.Api
@@ -33,6 +34,7 @@ namespace TradeAnalytics.Api
 
             services.AddApplicationServices();
             services.AddPersistenceServices(Configuration);
+            services.AddIdentityServices(Configuration);
             services.AddControllers();
 
             services.AddCors(options =>
