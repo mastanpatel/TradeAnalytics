@@ -36,6 +36,15 @@
                         .Html("<div>Trade Analytics</div>")
                         .Location(ToolbarItemLocation.Before)
                         .CssClass("header-title");
+                    items.Add()
+                    .Widget(e => e
+                            .Button().Text("Login")
+                            .Type(ButtonType.Success)
+                            .StylingMode(ButtonStylingMode.Outlined)
+                            .OnClick("TradeAnalytics.onLoginButtonClick")
+                           )
+                        .Location(ToolbarItemLocation.After)
+                        .CssClass("success-contained");
                 })
             )
         </div>
@@ -45,21 +54,21 @@
                 .Position(DrawerPosition.Left)
                 .Opened(new JS("TradeAnalytics.restoreDrawerOpened()"))
                 .Content(@<text>
-                    <div id="layout-drawer-scrollview" class="with-footer">
-                        <div class="content">
-                            @RenderBody()
-                        </div>
-                        <div class="content-block">
-                            <div class="content-footer">
-                                <div id="footer">
-                                    Copyright (c) 2022 Mastan Patel.
-                                    <br />
-                                    All trademarks or registered.
+                        <div id="layout-drawer-scrollview" class="with-footer">
+                            <div class="content">
+                                @RenderBody()
+                            </div>
+                            <div class="content-block">
+                                <div class="content-footer">
+                                    <div id="footer">
+                                        Copyright (c) 2022 Mastan Patel.
+                                        <br />
+                                        All trademarks or registered.
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </text>)
+                    </text>)
                 .Template(new TemplateName("navigation-menu"))
             )
         </div>
@@ -251,12 +260,19 @@
                         navigate(e.itemData.path, willHide ? 400 : 0);
                 }
             }
+             function onLoginButtonClick() {
+                getDrawer().toggle();
+                saveDrawerOpened();
+                console.log("login button clicked")
+            }
 
+            
             return {
                 init: init,
                 restoreDrawerOpened: restoreDrawerOpened,
                 onMenuButtonClick: onMenuButtonClick,
-                onTreeViewItemClick: onTreeViewItemClick
+                onTreeViewItemClick: onTreeViewItemClick,
+                onLoginButtonClick: onLoginButtonClick                          
             };
         })();
 

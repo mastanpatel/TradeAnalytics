@@ -17,6 +17,10 @@
     </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Views\Account\" />
+    </ItemGroup>
+
     <ProjectExtensions><VisualStudio><UserProperties TemplateFeatures="NETCORE" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace TradeAnalytics.Api.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpGet("all",Name = "GetAllPortfolioes")]
         public async Task<ActionResult<List<PortfolioListVm>>> GetAllPortfolioes()
         {
