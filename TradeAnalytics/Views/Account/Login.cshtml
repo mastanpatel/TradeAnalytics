@@ -1,0 +1,26 @@
+﻿@using TradeAnalytics.ViewModels
+
+
+<div id="form">
+    @(Html.DevExtreme().Form<LoginViewModel>()
+        .ID("Form")
+        .Items(item => {
+            item.AddGroup()
+            .CssClass("first-group")
+            .ColCount(1)
+            .Items(gitem => {
+                gitem.AddSimple().Template("<div></div>");
+                gitem.AddGroup().ColSpan(1).Items(sg =>{
+                    sg.AddSimpleFor(m => m.Email);
+                    sg.AddSimpleFor(m => m.Password);
+                    sg.AddButton().ButtonOptions(b => {
+                        b.Text("SIgn In");
+                        b.StylingMode(ButtonStylingMode.Outlined);
+                        b.Type(ButtonType.Default);
+                    }).HorizontalAlignment(HorizontalAlignment.Center);
+                });
+            });
+        })
+    )
+</div>
+

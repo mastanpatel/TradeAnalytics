@@ -169,3 +169,12 @@ body, html {
 .menu-container .dx-treeview .dx-treeview-node-container .dx-treeview-node:not(.dx-state-focused) > .dx-treeview-item.dx-state-hover {
     background-color: #3F3F4B;
 }
+/*Mastan Project Changes CSS start : */
+.dx-button-mode-outlined.dx-button-default {
+    background-color: transparent;
+    color: #ff5722;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #ff6d3e;
+    margin: 0px 10px;
+}

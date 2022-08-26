@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 
 <html>
@@ -15,7 +17,7 @@
     @* <script src="https://unpkg.com/devextreme-quill@21_2/dist/dx-quill.min.js"></script> *@
 
     <link rel="stylesheet" href="~/css/vendor.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Site.css" />
+    <link rel="stylesheet" href="~/css/Site.css" asp-append-version="true" />
     <script src="~/js/vendor.js" asp-append-version="true"></script>
 </head>
 
@@ -39,12 +41,11 @@
                     items.Add()
                     .Widget(e => e
                             .Button().Text("Login")
-                            .Type(ButtonType.Success)
+                            .Type(ButtonType.Default)
                             .StylingMode(ButtonStylingMode.Outlined)
                             .OnClick("TradeAnalytics.onLoginButtonClick")
                            )
-                        .Location(ToolbarItemLocation.After)
-                        .CssClass("success-contained");
+                        .Location(ToolbarItemLocation.After);
                 })
             )
         </div>
@@ -54,27 +55,27 @@
                 .Position(DrawerPosition.Left)
                 .Opened(new JS("TradeAnalytics.restoreDrawerOpened()"))
                 .Content(@<text>
-                        <div id="layout-drawer-scrollview" class="with-footer">
-                            <div class="content">
-                                @RenderBody()
-                            </div>
-                            <div class="content-block">
-                                <div class="content-footer">
-                                    <div id="footer">
-                                        Copyright (c) 2022 Mastan Patel.
-                                        <br />
-                                        All trademarks or registered.
+                                <div id="layout-drawer-scrollview" class="with-footer">
+                                    <div class="content">
+                                        @RenderBody()
+                                    </div>
+                                    <div class="content-block">
+                                        <div class="content-footer">
+                                            <div id="footer">
+                                                Copyright (c) 2022 Mastan Patel.
+                                                <br />
+                                                All trademarks or registered.
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </text>)
+                            </text>)
                 .Template(new TemplateName("navigation-menu"))
             )
         </div>
     </div>
 
-    @using(Html.DevExtreme().NamedTemplate("navigation-menu")) {
+         @using(Html.DevExtreme().NamedTemplate("navigation-menu")) {
         <div class="menu-container dx-swatch-additional">
 
             @functions{
@@ -172,6 +173,8 @@
         </div>
     }
 
+   
+
     <script>
 
         var TradeAnalytics = (function() {
@@ -260,10 +263,11 @@
                         navigate(e.itemData.path, willHide ? 400 : 0);
                 }
             }
+
              function onLoginButtonClick() {
-                getDrawer().toggle();
-                saveDrawerOpened();
-                console.log("login button clicked")
+                 console.log("login button clicked")
+                 location.href = "/Account/Login";
+                 
             }
 
             
