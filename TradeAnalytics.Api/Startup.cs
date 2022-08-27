@@ -11,8 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TradeAnalytics.Api.Services;
 using TradeAnalytics.Api.Utility;
 using TradeAnalytics.Application;
+using TradeAnalytics.Application.Contracts;
 using TradeAnalytics.Identity;
 using TradeAnalytics.Persistence;
 
@@ -35,6 +37,8 @@ namespace TradeAnalytics.Api
             services.AddApplicationServices();
             services.AddPersistenceServices(Configuration);
             services.AddIdentityServices(Configuration);
+            services.AddScoped<ILoggedInUserService, LoggedInUserService>();
+
             services.AddControllers();
 
             services.AddCors(options =>
@@ -78,9 +82,11 @@ namespace TradeAnalytics.Api
 
             app.UseCors("Open");
 
-            //app.UseAuthorization();
+            //
 
             app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

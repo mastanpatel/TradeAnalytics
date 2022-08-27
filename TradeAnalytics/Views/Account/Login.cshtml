@@ -17,6 +17,7 @@
                         b.Text("SIgn In");
                         b.StylingMode(ButtonStylingMode.Outlined);
                         b.Type(ButtonType.Default);
+                        b.OnClick("AuthenticateUser");
                     }).HorizontalAlignment(HorizontalAlignment.Center);
                 });
             });
@@ -24,3 +25,25 @@
     )
 </div>
 
+<script>
+    function AuthenticateUser(){
+
+        let Email = $("input[name=Email]").val();
+        let Password = $("input[name=Password]").val()
+       
+       
+         $.ajax({
+            url: 'Authenticate',
+            type: 'POST',
+            data: { 
+                email: Email,
+                password: Password,
+            }
+            }).done(function() {
+                location.href = "/Home/Index"; 
+            }); 
+            
+            console.log("Authenticate user");
+
+    }
+</script>
