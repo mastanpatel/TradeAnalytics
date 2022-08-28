@@ -13,5 +13,7 @@ namespace TradeAnalytics.Contracts
 
         Task<LoginDetails> getLoggedInUserId();
 
+        Task<bool> isLoggedinAsync();
+
     }
 }

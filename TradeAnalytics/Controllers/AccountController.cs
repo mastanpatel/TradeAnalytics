@@ -34,5 +34,12 @@ namespace TradeAnalytics.Controllers
             }
             return "Error";
         }
+
+        [HttpPost]
+        public async Task Logout()
+        {
+            await _authenticationService.Logout();
+        }
+
     }
 }

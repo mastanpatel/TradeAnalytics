@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TradeAnalytics.Application.Contracts;
 using TradeAnalytics.Application.Contracts.Identity;
@@ -19,12 +20,14 @@ namespace TradeAnalytics.Api.Controllers
             _loggedInUserService = loggedInUserService;
         }
 
+        
         [HttpPost("authenticate")]
         public async Task<ActionResult<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request)
         {
             return Ok(await _authenticationService.AuthenticateAsync(request));
         }
 
+        
         [HttpPost("register")]
         public async Task<ActionResult<RegistrationResponse>> RegisterAsync(RegistrationRequest request)
         {
@@ -38,10 +41,6 @@ namespace TradeAnalytics.Api.Controllers
 
             return userDetails;
 
-
-            //if(_loggedInUserService.UserId != null)
-            //    return  Ok(_loggedInUserService.UserId);
-            //return Ok("0");
         }
 
     }

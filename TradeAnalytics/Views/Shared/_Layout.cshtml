@@ -25,6 +25,29 @@
 <body class="dx-viewport">
     <div id="app-side-nav-outer-toolbar">
         <div class="layout-header">
+            @functions{
+                string GetButtonName()
+                {
+                    var result = Task.Run(() => authenticationService.isLoggedinAsync()).Result;//Task.Run(() => authenticationService.isLoggedinAsync()).Result;
+
+                    if (result)
+                    {
+                        return "LogOut";
+                    }
+                    return "LogIn";
+                }
+                string GetButtonClickMethod()
+                {
+                    var result = Task.Run(() => authenticationService.isLoggedinAsync()).Result; // Task.Run(() => authenticationService.isLoggedinAsync()).Result;
+                    //var result = User.Identity.IsAuthenticated;
+                    if (result)
+                    {
+                        return "TradeAnalytics.onLogOutButtonClick";
+                    }
+                    return "TradeAnalytics.onLoginButtonClick";
+                }
+            }
+
             @(Html.DevExtreme().Toolbar()
                 .Items(items => {
                     items.Add()
@@ -41,10 +64,10 @@
                         .CssClass("header-title");
                     items.Add()
                     .Widget(e => e
-                            .Button().Text("Login")
+                            .Button().Text(GetButtonName())
                             .Type(ButtonType.Default)
                             .StylingMode(ButtonStylingMode.Outlined)
-                            .OnClick("TradeAnalytics.onLoginButtonClick")
+                            .OnClick(GetButtonClickMethod())
                            )
                         .Location(ToolbarItemLocation.After);
                 })
@@ -75,12 +98,12 @@
             )
         </div>
     </div>
-    @if ((await authenticationService.getLoggedInUserId()).UserId != null)
-       {
-         @using(Html.DevExtreme().NamedTemplate("navigation-menu")) {
-        <div class="menu-container dx-swatch-additional">
+    @if (await authenticationService.isLoggedinAsync()) //await authenticationService.getLoggedInUserId()).UserId != null && 
+    {
+        @using (Html.DevExtreme().NamedTemplate("navigation-menu")) {
+            <div class="menu-container dx-swatch-additional">
 
-            @functions{
+                @functions{
                 string GetUrl(string action, string controller) => Url.Action(action,controller);
                 string GetUrl(string action) => Url.Action(action);
                 string GetCurrentUrl() => Url.Action(ViewContext.RouteData.Values["action"].ToString());
@@ -95,7 +118,7 @@
                         .Icon("home")
                         .Option("path", GetUrl("Index","Home"))
                         .Selected(IsCurrentUrl("Index"));
-                    
+
                     items.Add()
                         .Text("Portfolio")
                         .Icon("product")
@@ -171,9 +194,10 @@
                 .Width(250)
                 .OnItemClick("TradeAnalytics.onTreeViewItemClick")
             )
-         
+
         </div>
-       }
+        }
+
     }
 
     <script>
@@ -270,14 +294,29 @@
                  location.href = "/Account/Login";
                  
             }
+            function onLogOutButtonClick() {
+                 console.log("LogOut button clicked")
 
+                  $.ajax({
+                        url: '/Account/Logout',
+                        type: 'POST',
+                        data: { 
+                        }
+                        }).done(function() {
+                            location.href = "/Account/Login"; 
+                        }); 
+
+                 //location.href = "/Home/Index";
+                 
+            }
             
             return {
                 init: init,
                 restoreDrawerOpened: restoreDrawerOpened,
                 onMenuButtonClick: onMenuButtonClick,
                 onTreeViewItemClick: onTreeViewItemClick,
-                onLoginButtonClick: onLoginButtonClick                          
+                onLoginButtonClick: onLoginButtonClick,
+                onLogOutButtonClick: onLogOutButtonClick
             };
         })();
 
