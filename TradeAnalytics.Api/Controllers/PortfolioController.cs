@@ -13,6 +13,7 @@ namespace TradeAnalytics.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PortfolioController : Controller
     {
         private readonly IMediator _mediator;
@@ -22,7 +23,6 @@ namespace TradeAnalytics.Api.Controllers
             _mediator = mediator;
         }
 
-        [Authorize]
         [HttpGet("all",Name = "GetAllPortfolioes")]
         public async Task<ActionResult<List<PortfolioListVm>>> GetAllPortfolioes()
         {

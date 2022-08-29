@@ -1,0 +1,57 @@
+﻿@using TradeAnalytics.ViewModels
+
+
+<div id="form">
+    @(Html.DevExtreme().Form<RegisterViewModel>()
+        .ID("Form")
+        .Items(item => {
+            item.AddGroup()
+            .CssClass("first-group")
+            .ColCount(1)
+            .Items(gitem => {
+                gitem.AddSimple().Template("<div></div>");
+                gitem.AddGroup().ColSpan(1).CssClass("login-group").Items(sg =>{
+                    sg.AddSimpleFor(m => m.FirstName);
+                    sg.AddSimpleFor(m => m.LastName);
+                    sg.AddSimpleFor(m => m.Email);
+                    sg.AddSimpleFor(m => m.UserName);
+                    sg.AddSimpleFor(m => m.Password);
+                    sg.AddButton().ButtonOptions(b => {
+                        b.Text("Register");
+                        b.StylingMode(ButtonStylingMode.Outlined);
+                        b.Type(ButtonType.Default);
+                        b.OnClick("RegisterUser");
+                    }).HorizontalAlignment(HorizontalAlignment.Center);
+                });
+            });
+        })
+    )
+</div>
+
+<script>
+    function RegisterUser(){
+
+        let FirstName = $("input[name=FirstName]").val();
+        let LastName = $("input[name=LastName]").val()
+        let Email = $("input[name=Email]").val();
+        let UserName = $("input[name=UserName]").val()
+        let Password = $("input[name=Password]").val()
+       
+         $.ajax({
+            url: '/Account/Register',
+            type: 'POST',
+            data: { 
+                Email: Email,
+                FirstName: FirstName,
+                LastName: LastName,
+                UserName: UserName,
+                Password: Password,
+            }
+            }).done(function() {
+                location.href = "/Home/Index"; 
+            }); 
+            
+            console.log("Authenticate user");
+
+    }
+</script>

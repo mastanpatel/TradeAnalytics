@@ -11,8 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TradeAnalytics.Contracts;
 using AutoMapper;
-using TradeAnalytics.Services.Base;
 using TradeAnalytics.Services;
+using TradeAnalytics.Services.Base;
+using Microsoft.AspNetCore.Components.Authorization;
+using TradeAnalytics.Auth;
+using Microsoft.AspNetCore.Http;
 
 namespace TradeAnalytics
 {
@@ -29,6 +32,11 @@ namespace TradeAnalytics
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+            });
+
             services
                 .AddControllersWithViews()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
@@ -50,8 +58,11 @@ namespace TradeAnalytics
 
             services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://localhost:44341"));
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IPortfolioDataService, PortfolioDataService>();
-
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            
 
         }
 
@@ -66,6 +77,19 @@ namespace TradeAnalytics
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseSession();
+
+            app.Use(async (context, next) =>
+            {
+                var token = context.Session.GetString("token");
+                if (!string.IsNullOrEmpty(token))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + token);
+                }
+                await next();
+            });
+
             app.UseStaticFiles();
 
             app.UseRouting();
