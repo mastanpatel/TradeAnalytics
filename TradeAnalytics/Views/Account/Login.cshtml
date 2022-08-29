@@ -1,0 +1,48 @@
+﻿@using TradeAnalytics.ViewModels
+
+
+<div id="form">
+    @(Html.DevExtreme().Form<LoginViewModel>()
+        .ID("Form")
+        .Items(item => {
+            item.AddGroup()
+            .CssClass("first-group")
+            .ColCount(1)
+            .Items(gitem => {
+                gitem.AddGroup().ColSpan(2).CssClass("login-group").Items(sg =>{
+                    sg.AddSimpleFor(m => m.Email);
+                    sg.AddSimpleFor(m => m.Password);
+                    sg.AddButton().ButtonOptions(b => {
+                        b.Text("Sign In");
+                        b.StylingMode(ButtonStylingMode.Outlined);
+                        b.Type(ButtonType.Default);
+                        b.OnClick("AuthenticateUser");
+                    }).HorizontalAlignment(HorizontalAlignment.Center);
+                });
+            });
+        })
+    )
+</div>
+
+<script>
+    function AuthenticateUser(){
+
+        let Email = $("input[name=Email]").val();
+        let Password = $("input[name=Password]").val()
+       
+       
+         $.ajax({
+            url: 'Authenticate',
+            type: 'POST',
+            data: { 
+                email: Email,
+                password: Password,
+            }
+            }).done(function() {
+                location.href = "/Home/Index"; 
+            }); 
+            
+            console.log("Authenticate user");
+
+    }
+</script>

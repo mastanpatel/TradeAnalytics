@@ -1,18 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using TradeAnalytics.Api.Services;
 using TradeAnalytics.Api.Utility;
 using TradeAnalytics.Application;
+using TradeAnalytics.Application.Contracts;
 using TradeAnalytics.Identity;
 using TradeAnalytics.Persistence;
 
@@ -35,6 +30,8 @@ namespace TradeAnalytics.Api
             services.AddApplicationServices();
             services.AddPersistenceServices(Configuration);
             services.AddIdentityServices(Configuration);
+            services.AddScoped<ILoggedInUserService, LoggedInUserService>();
+
             services.AddControllers();
 
             services.AddCors(options =>
@@ -69,6 +66,8 @@ namespace TradeAnalytics.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -78,9 +77,7 @@ namespace TradeAnalytics.Api
 
             app.UseCors("Open");
 
-            //app.UseAuthorization();
-
-            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -16,10 +16,6 @@ namespace TradeAnalytics.Controllers
         // GET: PortfolioController
         public IActionResult Index()
         {
-
-            var data = _portfolioDataService.GetAllPortfolioes();
-
-
             return View();
         }
 

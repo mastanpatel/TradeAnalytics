@@ -21,11 +21,11 @@ namespace TradeAnalytics.Controllers
         }
 
         [HttpGet]
-        public object Get(DataSourceLoadOptions loadOptions)
+        public async Task<object> Get(DataSourceLoadOptions loadOptions)
         {
             //List<PortfolioListViewModel> data = _portfolioDataService.GetAllPortfolioes();
 
-            List<PortfolioListViewModel> data = Task.Run(() => _portfolioDataService.GetAllPortfolioes()).Result;
+            var data = await _portfolioDataService.GetAllPortfolioes();
 
             return DataSourceLoader.Load(data, loadOptions);
         }
