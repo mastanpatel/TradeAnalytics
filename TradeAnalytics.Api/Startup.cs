@@ -66,6 +66,8 @@ namespace TradeAnalytics.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -74,10 +76,6 @@ namespace TradeAnalytics.Api
             });
 
             app.UseCors("Open");
-
-            //
-
-            app.UseAuthentication();
 
             app.UseAuthorization();
 

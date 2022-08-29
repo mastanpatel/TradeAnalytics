@@ -9,12 +9,11 @@
             .CssClass("first-group")
             .ColCount(1)
             .Items(gitem => {
-                gitem.AddSimple().Template("<div></div>");
-                gitem.AddGroup().ColSpan(1).Items(sg =>{
+                gitem.AddGroup().ColSpan(2).CssClass("login-group").Items(sg =>{
                     sg.AddSimpleFor(m => m.Email);
                     sg.AddSimpleFor(m => m.Password);
                     sg.AddButton().ButtonOptions(b => {
-                        b.Text("SIgn In");
+                        b.Text("Sign In");
                         b.StylingMode(ButtonStylingMode.Outlined);
                         b.Type(ButtonType.Default);
                         b.OnClick("AuthenticateUser");

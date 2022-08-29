@@ -39,13 +39,21 @@
                 string GetButtonClickMethod()
                 {
                     var result = Task.Run(() => authenticationService.isLoggedinAsync()).Result; // Task.Run(() => authenticationService.isLoggedinAsync()).Result;
-                    //var result = User.Identity.IsAuthenticated;
+                                                                                                 //var result = User.Identity.IsAuthenticated;
                     if (result)
                     {
                         return "TradeAnalytics.onLogOutButtonClick";
                     }
                     return "TradeAnalytics.onLoginButtonClick";
                 }
+
+                bool isAuthenticated()
+                {
+                    var result = Task.Run(() => authenticationService.isLoggedinAsync()).Result;//Task.Run(() => authenticationService.isLoggedinAsync()).Result;
+
+                    return result;
+                }
+
             }
 
             @(Html.DevExtreme().Toolbar()
@@ -60,7 +68,7 @@
                         .CssClass("menu-button");
                     items.Add()
                         .Html("<div>Trade Analytics</div>")
-                        .Location(ToolbarItemLocation.Before)
+                        .Location(ToolbarItemLocation.Center)
                         .CssClass("header-title");
                     items.Add()
                     .Widget(e => e
@@ -68,6 +76,15 @@
                             .Type(ButtonType.Default)
                             .StylingMode(ButtonStylingMode.Outlined)
                             .OnClick(GetButtonClickMethod())
+                           )
+                        .Location(ToolbarItemLocation.After);
+                    items.Add()
+                    .Widget(e => e
+                            .Button().Text("Register")
+                            .Type(ButtonType.Default)
+                            .StylingMode(ButtonStylingMode.Outlined)
+                            .OnClick("TradeAnalytics.onRegisterButtonClick")
+                            .Visible(!isAuthenticated())
                            )
                         .Location(ToolbarItemLocation.After);
                 })
@@ -309,6 +326,17 @@
                  //location.href = "/Home/Index";
                  
             }
+
+            
+
+            function onRegisterButtonClick() {
+                console.log("Register button clicked")
+
+                location.href = "/Account/Register";
+
+            //location.href = "/Home/Index";
+                 
+            }
             
             return {
                 init: init,
@@ -316,7 +344,8 @@
                 onMenuButtonClick: onMenuButtonClick,
                 onTreeViewItemClick: onTreeViewItemClick,
                 onLoginButtonClick: onLoginButtonClick,
-                onLogOutButtonClick: onLogOutButtonClick
+                onLogOutButtonClick: onLogOutButtonClick,
+                onRegisterButtonClick: onRegisterButtonClick
             };
         })();
 

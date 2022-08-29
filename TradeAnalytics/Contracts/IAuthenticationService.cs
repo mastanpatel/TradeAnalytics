@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using TradeAnalytics.Services.Base;
+using TradeAnalytics.ViewModels;
 
 namespace TradeAnalytics.Contracts
 {
@@ -7,13 +8,15 @@ namespace TradeAnalytics.Contracts
     {
         Task<bool> Authenticate(string email, string password);
 
-        Task<bool> Register(string firstName, string lastName, string userName, string email, string password);
+        Task<bool> Register(RegisterViewModel model);
 
         Task Logout();
 
         Task<LoginDetails> getLoggedInUserId();
 
         Task<bool> isLoggedinAsync();
+
+        string AddBearerToken();
 
     }
 }

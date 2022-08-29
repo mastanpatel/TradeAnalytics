@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TradeAnalytics.Contracts;
+using TradeAnalytics.ViewModels;
 
 namespace TradeAnalytics.Controllers
 {
@@ -21,6 +22,26 @@ namespace TradeAnalytics.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<bool> Register(string firstName, string lastName, string userName, string email, string password)
+        {
+            RegisterViewModel register = new RegisterViewModel();
+            register.FirstName = firstName;
+            register.LastName = lastName;
+            register.Email = email;
+            register.UserName = userName;
+            register.Password = password;
+
+            var isRegistered = false;
+
+            if (ModelState.IsValid)
+            {
+                isRegistered = await _authenticationService.Register(register);
+            }
+
+            return isRegistered;
         }
 
         [HttpPost]

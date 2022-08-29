@@ -36,7 +36,7 @@ namespace TradeAnalytics.Services
             {
                 _httpContextAccessor.HttpContext.Session.SetString("token", authenticationRepsonse.Token);
                 ((CustomAuthenticationStateProvider)_authenticationStateProvider).SetUserAuthenticated(email);
-                _client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", authenticationRepsonse.Token);
+                _client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authenticationRepsonse.Token);
                 return true;
             }
             return false;
@@ -50,9 +50,19 @@ namespace TradeAnalytics.Services
             return Task.CompletedTask;
         }
 
-        public Task<bool> Register(string firstName, string lastName, string userName, string email, string password)
+        public async Task<bool> Register(RegisterViewModel model)
         {
-            throw new System.NotImplementedException();
+            // RegistrationRequest registrationRequest = new RegistrationRequest() { FirstName = firstName, LastName = lastName, Email = email, UserName = userName, Password = password };
+            
+            var mappedRegistrationRequist = _mapper.Map<RegistrationRequest>(model);
+
+            var response = await _client.RegisterAsync(mappedRegistrationRequist);
+
+            if (!string.IsNullOrEmpty(response.UserId))
+            {
+                return true;
+            }
+            return false;
         }
 
         public async Task<LoginDetails> getLoggedInUserId()
@@ -75,7 +85,16 @@ namespace TradeAnalytics.Services
 
             return false;
         }
+        public string AddBearerToken()
+        {
+            if (_httpContextAccessor.HttpContext.Session.GetString("token") != null)
+            {
+                _client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("token"));
+                return _httpContextAccessor.HttpContext.Session.GetString("token");
+            }
 
+            return "";
+        }
 
     }
 }

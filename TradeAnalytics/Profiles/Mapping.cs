@@ -10,6 +10,7 @@ namespace TradeAnalytics.Profiles
         {
             CreateMap<PortfolioListVm, PortfolioListViewModel>().ReverseMap();
             CreateMap<AuthenticationRequest, LoginViewModel>().ReverseMap();
+            CreateMap<RegistrationRequest, RegisterViewModel>().ReverseMap();
         }
     }
 }
