@@ -25,6 +25,7 @@ namespace TradeAnalytics.Identity.Services
             _jwtSettings = jwtSettings.Value;
             _signInManager = signInManager;
         }
+
         public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
