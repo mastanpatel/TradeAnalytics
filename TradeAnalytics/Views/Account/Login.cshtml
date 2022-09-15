@@ -10,8 +10,8 @@
             .ColCount(1)
             .Items(gitem => {
                 gitem.AddGroup().ColSpan(2).CssClass("login-group").Items(sg =>{
-                    sg.AddSimpleFor(m => m.Email);
-                    sg.AddSimpleFor(m => m.Password);
+                    sg.AddSimpleFor(m => m.Email).Editor(e => e.TextBox().Mode(TextBoxMode.Email));
+                    sg.AddSimpleFor(m => m.Password).Editor(e => e.TextBox().Mode(TextBoxMode.Password));
                     sg.AddButton().ButtonOptions(b => {
                         b.Text("Sign In");
                         b.StylingMode(ButtonStylingMode.Outlined);
